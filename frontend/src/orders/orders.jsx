@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import axios from 'axios';
-import CreateOrderModal from './CreateOrderModal';
-import OrderDetailModal from './OrderDetailModal';
+import createorderModal from './createordermodal';
+import orderdetailmodal from './orderdetailmodal';
+
 
 
 const API = 'http://localhost:5000/api';

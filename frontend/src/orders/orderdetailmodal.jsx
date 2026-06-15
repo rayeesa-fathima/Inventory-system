@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import './OrderModal.css';
+import './ordermodal.css';
 
-const OrderDetailModal = ({ orderId, onClose, token, API }) => {
+const orderdetailmodal = ({ orderId, onClose, token, API }) => {
   const [order, setOrder] = useState(null);
 
   useEffect(() => {
@@ -99,4 +99,4 @@ const OrderDetailModal = ({ orderId, onClose, token, API }) => {
   );
 };
 
-export default OrderDetailModal;
+export default orderdetailmodal;

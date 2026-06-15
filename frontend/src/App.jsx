@@ -1,6 +1,7 @@
-import Orders from "./orders/Orders";
+import Orders from "./orders/orders";
 import "./App.css";
 import { useEffect, useState } from "react";
+
 
 const NAV_ITEMS = [
   { key: "dashboard", label: "Dashboard" },

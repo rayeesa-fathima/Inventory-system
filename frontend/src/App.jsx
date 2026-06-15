@@ -1,6 +1,7 @@
 import Orders from "./orders/orders";
 import "./App.css";
 import { useEffect, useState } from "react";
+const API_URL = "https://inventory-system-qs4j.onrender.com";
 
 
 const NAV_ITEMS = [
@@ -26,7 +27,7 @@ function LoginPage({ onLogin }) {
     setError("");
     setLoading(true);
     try {
-      const res  = await fetch("http://localhost:5000/api/auth/login", {
+      const res = await fetch(`${API_URL}/api/auth/login`, { 
         method:  "POST",
         headers: { "Content-Type": "application/json" },
         body:    JSON.stringify({ email, password }),
@@ -148,7 +149,7 @@ function App() {
   /* ── Products ── */
   const fetchProducts = async () => {
     try {
-      const res  = await authFetch("http://localhost:5000/api/products");
+      const res = await authFetch(`${API_URL}/api/products`);
       const data = await res.json();
       setProducts(Array.isArray(data) ? data : data.products || []);
     } catch (e) { console.log(e); }
@@ -162,7 +163,7 @@ function App() {
   const addProduct = async () => {
     if (!name || !sku || !price) { alert("Name, SKU and Price are required."); return; }
     try {
-      const res  = await authFetch("http://localhost:5000/api/products", {
+      const res = await authFetch(`${API_URL}/api/products`, {
         method: "POST",
         body: JSON.stringify({ name, sku, category, price, stock, low_stock_limit: 5, status: "active" }),
       });
@@ -174,7 +175,7 @@ function App() {
 
   const updateProduct = async () => {
     try {
-      const res  = await authFetch(`http://localhost:5000/api/products/${editId}`, {
+      const res = await authFetch(`${API_URL}/api/products/${editId}`, {
         method: "PUT",
         body: JSON.stringify({ name, sku, category, price, stock, low_stock_limit: 5, status: "active" }),
       });
@@ -190,7 +191,7 @@ function App() {
     }
     if (!window.confirm("Are you sure you want to delete this product?")) return;
     try {
-      const res  = await authFetch(`http://localhost:5000/api/products/${id}`, { method: "DELETE" });
+      const res = await authFetch(`${API_URL}/api/products/${id}`,  { method: "DELETE" });
       const data = await res.json();
       alert(data.message);
       fetchProducts();

@@ -35,3 +35,13 @@ console.log("JWT_SECRET =", process.env.JWT_SECRET);
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
+const db = require("./config/db");
+
+(async () => {
+  try {
+    const [rows] = await db.query("SELECT 1");
+    console.log("DATABASE CONNECTED SUCCESSFULLY");
+  } catch (err) {
+    console.error("DATABASE CONNECTION FAILED:", err);
+  }
+})();

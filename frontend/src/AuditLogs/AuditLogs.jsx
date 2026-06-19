@@ -2,7 +2,7 @@ import React, { useState, useEffect, useCallback } from 'react';
 import axios from 'axios';
 import './AuditLogs.css';
 
-const API = process.env.REACT_APP_API_URL || 'http://localhost:5000/api';
+const API = import.meta.env.VITE_API_URL;
 
 const actionColors = {
   ORDER_CREATED: 'badge-confirmed',

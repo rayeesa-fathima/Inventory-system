@@ -5,7 +5,7 @@ import orderdetailmodal from './orderdetailmodal';
 
 
 
-const API = 'http://localhost:5000/api';
+const API = 'https://inventory-system-qs4j.onrender.com';
 
 const statusOptions = ['', 'Pending', 'Confirmed', 'Processing', 'Shipped', 'Delivered', 'Cancelled'];
 
@@ -158,7 +158,7 @@ const Orders = () => {
       </div>
 
       {showCreate && (
-        <CreateOrderModal
+        <createordermodal
           onClose={() => setShowCreate(false)}
           onSuccess={() => { setShowCreate(false); fetchOrders(); }}
           token={token}
@@ -167,7 +167,7 @@ const Orders = () => {
       )}
 
       {selectedOrder && (
-        <OrderDetailModal
+        <orderdetailmodal
           orderId={selectedOrder}
           onClose={() => setSelectedOrder(null)}
           token={token}

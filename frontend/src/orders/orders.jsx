@@ -24,6 +24,7 @@ const Orders = () => {
   const user = JSON.parse(localStorage.getItem('ims_user') || '{}');
 
   const token = localStorage.getItem('ims_token');
+  console.log("Orders Token:", token);
   const headers = { Authorization: `Bearer ${token}` };
 
   const fetchOrders = useCallback(async () => {
@@ -70,7 +71,7 @@ const Orders = () => {
         <button
   className="btn btn-primary"
   onClick={() => {
-    alert("Button clicked");
+
     setShowCreate(true);
   }}
 >
@@ -164,22 +165,25 @@ const Orders = () => {
       </div>
 
       {showCreate && (
-        <createorderModal
-  onClose={() => setShowCreate(false)}
-  onSuccess={() => { setShowCreate(false); fetchOrders(); }}
-  token={token}
-  API={API}
-/>
-      )}
+  <CreateOrderModal
+    onClose={() => setShowCreate(false)}
+    onSuccess={() => {
+      setShowCreate(false);
+      fetchOrders();
+    }}
+    token={token}
+    API={API}
+  />
+)}
 
       {selectedOrder && (
-        <orderdetailmodal
-  orderId={selectedOrder}
-  onClose={() => setSelectedOrder(null)}
-  token={token}
-  API={API}
-/>
-      )}
+  <OrderDetailModal
+    orderId={selectedOrder}
+    onClose={() => setSelectedOrder(null)}
+    token={token}
+    API={API}
+  />
+)}
     </div>
   );
 };

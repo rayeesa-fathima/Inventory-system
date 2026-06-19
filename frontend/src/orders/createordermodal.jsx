@@ -20,7 +20,8 @@ const createordermodal = ({ onClose, onSuccess, token, API }) => {
   const headers = {
     Authorization: `Bearer ${token}`
   };
-
+  console.log("TOKEN:", token);
+console.log("HEADERS:", headers);
   useEffect(() => {
     axios
       .get(`${API}/products?limit=200&status=active`, {

@@ -67,9 +67,15 @@ const Orders = () => {
           <h1 className="page-title">Orders</h1>
           <p className="page-subtitle">{pagination.total} total orders</p>
         </div>
-        <button className="btn btn-primary" onClick={() => setShowCreate(true)}>
-          + New Order
-        </button>
+        <button
+  className="btn btn-primary"
+  onClick={() => {
+    alert("Button clicked");
+    setShowCreate(true);
+  }}
+>
+  + New Order
+</button>
       </div>
 
       <div className="card">

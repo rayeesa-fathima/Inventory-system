@@ -82,6 +82,11 @@ function LoginPage({ onLogin }) {
           <button className="login-btn" type="submit" disabled={loading}>
             {loading ? "Signing in..." : "Sign In"}
           </button>
+
+          <div className="demo-credentials">
+  <p>Email: admin@inventory.com</p>
+  <p>Password: Admin@123</p>
+</div>
         </form>
 
         

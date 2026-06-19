@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import axios from 'axios';
-import createorderModal from './createordermodal';
-import orderdetailmodal from './orderdetailmodal';
+import CreateOrderModal from './createordermodal';
+import OrderDetailModal from './orderdetailmodal';
 
 
 
@@ -30,7 +30,7 @@ const Orders = () => {
     setLoading(true);
     try {
       const params = new URLSearchParams({ ...filters, limit: 10 }).toString();
-      const { data } = await axios.get(`${API}/api/orders?${params}`, { headers });
+      const { data } = await axios.get(`${API}/orders?${params}`, { headers });
       setOrders(data.data);
       setPagination(data.pagination);
     } catch (err) {
@@ -45,7 +45,7 @@ const Orders = () => {
   const handleStatusUpdate = async (orderId, newStatus) => {
     if (!window.confirm(`Change status to "${newStatus}"?`)) return;
     try {
-      await axios.patch(`${API}/api/orders/${orderId}/status`, { status: newStatus }, { headers });
+      await axios.patch(`${API}/orders/${orderId}/status`, { status: newStatus }, { headers });
       fetchOrders();
     } catch (err) {
       alert(err.response?.data?.message || 'Error updating status');
@@ -158,21 +158,21 @@ const Orders = () => {
       </div>
 
       {showCreate && (
-        <createordermodal
-          onClose={() => setShowCreate(false)}
-          onSuccess={() => { setShowCreate(false); fetchOrders(); }}
-          token={token}
-          API={API}
-        />
+        <createorderModal
+  onClose={() => setShowCreate(false)}
+  onSuccess={() => { setShowCreate(false); fetchOrders(); }}
+  token={token}
+  API={API}
+/>
       )}
 
       {selectedOrder && (
         <orderdetailmodal
-          orderId={selectedOrder}
-          onClose={() => setSelectedOrder(null)}
-          token={token}
-          API={API}
-        />
+  orderId={selectedOrder}
+  onClose={() => setSelectedOrder(null)}
+  token={token}
+  API={API}
+/>
       )}
     </div>
   );
